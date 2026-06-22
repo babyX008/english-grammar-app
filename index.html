@@ -62,29 +62,31 @@
   </div>
   <script type="module" src="js/app.js?v=2"></script>
 <script>
-(function(){
-  var PW='johnny';
-  if(localStorage.getItem('_pw_ok')===PW){return;}
-  var ov=document.getElementById('pw-overlay');
-  var inp=document.getElementById('pw-input');
-  var err=document.getElementById('pw-error');
-  var box=document.getElementById('pw-box');
-  if(!ov)return;
-  ov.style.display='flex';
-  function check(){
-    if(inp.value===PW){
-      localStorage.setItem('_pw_ok',PW);
-      ov.style.display='none';
-    }else{
-      err.style.display='block';
+(function() {
+  var PW = 'johnny';
+  var ov = document.getElementById('pw-overlay');
+  if (!ov) return;
+  // Already authenticated: keep hidden
+  if (localStorage.getItem('_pw_ok') === PW) { ov.style.display = 'none'; return; }
+  // Show lock
+  ov.style.display = 'flex';
+  var inp = document.getElementById('pw-input');
+  var err = document.getElementById('pw-error');
+  var box = document.getElementById('pw-box');
+  function check() {
+    if (inp.value === PW) {
+      localStorage.setItem('_pw_ok', PW);
+      ov.style.display = 'none';
+    } else {
+      err.style.display = 'block';
       box.classList.add('pw-shake');
-      inp.value='';
+      setTimeout(function() { box.classList.remove('pw-shake'); }, 300);
+      inp.value = '';
       inp.focus();
-      setTimeout(function(){box.classList.remove('pw-shake');},300);
     }
   }
-  document.getElementById('pw-btn').addEventListener('click',check);
-  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check();});
+  document.getElementById('pw-btn').addEventListener('click', check);
+  inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') check(); });
 })();
 </script>
 </body>
