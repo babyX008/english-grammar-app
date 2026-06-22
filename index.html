@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0f0f0f">
+  <meta name="description" content="英语语法练习 — 按模块练习选择题，即时反馈，错题重练">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="语法练习">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📝</text></svg>">
+  <link rel="manifest" href="manifest.json">
+  <title>英语语法练习</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    /* ---- 密码锁 ---- */
+    .pw-overlay { position:fixed; inset:0; z-index:99999; background:#0f0f0f; display:flex; justify-content:center; align-items:center; flex-direction:column; }
+    .pw-box { text-align:center; }
+    .pw-box h1 { font-size:3rem; margin-bottom:0.5rem; }
+    .pw-box .pw-hint { color:#94a3b8; margin-bottom:1.5rem; font-size:1rem; }
+    .pw-box input { font-size:1.5rem; padding:0.75rem 1.5rem; border-radius:12px; border:2px solid #475569; background:#1e293b; color:#e2e8f0; text-align:center; width:220px; }
+    .pw-box input:focus { outline:none; border-color:var(--accent,#60a5fa); }
+    .pw-box button { margin-top:1rem; font-size:1.2rem; padding:0.6rem 2.5rem; border-radius:10px; border:none; background:var(--accent,#facc15); color:#000; font-weight:700; cursor:pointer; }
+    .pw-error { color:#f87171; margin-top:0.75rem; display:none; font-size:0.95rem; }
+    @keyframes pw-shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+    .pw-shake { animation:pw-shake 0.3s ease; }
+  </style>
+</head>
+<body>
+<div class="pw-overlay" id="pw-overlay">
+  <div class="pw-box" id="pw-box">
+    <h1>🔐</h1>
+    <p class="pw-hint">请输入访问密码</p>
+    <input type="password" id="pw-input" placeholder="密码" autofocus>
+    <button id="pw-btn" style="display:block;margin:1rem auto 0">进入</button>
+    <p class="pw-error" id="pw-error">密码错误，请重试</p>
+  </div>
+</div>
+  <div class="app-shell">
+    <header class="app-header">
+      <a href="#/" class="logo">📝 语法练习</a>
+      <nav class="nav-links">
+        <a href="#/">首页</a>
+        <a href="#/wrongbook">错题本</a>
+        <a href="#/stats">统计</a>
+        <a href="#/import">导入</a>
+        <a href="#/settings">设置</a>
+      </nav>
+    </header>
+        <div id="download-banner" style="background:var(--accent);color:#000;text-align:center;padding:10px;font-weight:bold;font-size:1rem">
+      <a href="grammar.html" download style="color:#000;text-decoration:none">⬇ 点击下载离线版（10MB）</a>
+    </div>
+    <main class="app-main" id="app-main">
+      <!-- Loading spinner while router initializes -->
+      <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <span class="loading-text">加载中...</span>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="js/app.js?v=2"></script>
+<script>
+(function(){
+  var PW='johnny';
+  if(localStorage.getItem('_pw_ok')===PW){return;}
+  var ov=document.getElementById('pw-overlay');
+  var inp=document.getElementById('pw-input');
+  var err=document.getElementById('pw-error');
+  var box=document.getElementById('pw-box');
+  if(!ov)return;
+  ov.style.display='flex';
+  function check(){
+    if(inp.value===PW){
+      localStorage.setItem('_pw_ok',PW);
+      ov.style.display='none';
+    }else{
+      err.style.display='block';
+      box.classList.add('pw-shake');
+      inp.value='';
+      inp.focus();
+      setTimeout(function(){box.classList.remove('pw-shake');},300);
+    }
+  }
+  document.getElementById('pw-btn').addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check();});
+})();
+</script>
+</body>
+</html>

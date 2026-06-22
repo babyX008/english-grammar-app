@@ -1,0 +1,150 @@
+[
+  {
+    "id": "much-uncountable-basic",
+    "sub_module_id": "noun-uncountable",
+    "tags": [
+      "不可数名词",
+      "much-many"
+    ],
+    "pattern": "We haven't got much __ for our __.",
+    "slots": {
+      "noun1": {
+        "type": "uncountable_vocab",
+        "values": [
+          "bread",
+          "water",
+          "money",
+          "information",
+          "advice",
+          "homework",
+          "furniture",
+          "news"
+        ]
+      },
+      "noun2": {
+        "type": "event_noun",
+        "values": [
+          "picnic",
+          "trip",
+          "party",
+          "project",
+          "presentation",
+          "journey",
+          "meeting"
+        ]
+      }
+    },
+    "distractor_pool": [
+      "apple",
+      "tomato",
+      "biscuit",
+      "book",
+      "pen",
+      "bag",
+      "ticket",
+      "cup"
+    ],
+    "explanation_template": "much 修饰不可数名词，{noun1} 是不可数名词，而其他三个选项都是可数名词。",
+    "common_mistake_template": "much + 不可数，many + 可数复数。不要看到 much 就选可数名词。"
+  },
+  {
+    "id": "third-person-basic",
+    "sub_module_id": "verb-tense-present",
+    "tags": [
+      "三单",
+      "一般现在时"
+    ],
+    "pattern": "{subject} __ to school {transport} every day.",
+    "slots": {
+      "subject": {
+        "type": "person_3rd",
+        "values": [
+          "She",
+          "He",
+          "Tom",
+          "Mary",
+          "My brother",
+          "His sister"
+        ]
+      },
+      "transport": {
+        "type": "transport",
+        "values": [
+          "by bus",
+          "by bike",
+          "on foot",
+          "by car",
+          "by subway",
+          "by train"
+        ]
+      }
+    },
+    "distractor_pool": [
+      "go",
+      "going",
+      "gone"
+    ],
+    "explanation_template": "every day 表示习惯动作，用一般现在时。主语 {subject} 是三单，动词用 goes。",
+    "common_mistake_template": "三单主语，动词要加 -s 或 -es。go 的三单是 goes。"
+  },
+  {
+    "id": "enjoy-doing-basic",
+    "sub_module_id": "gerund-object",
+    "tags": [
+      "动名词",
+      "enjoy"
+    ],
+    "pattern": "I enjoy __ in my free time.",
+    "slots": {
+      "activity": {
+        "type": "gerund_activity",
+        "values": [
+          "reading",
+          "swimming",
+          "cooking",
+          "drawing",
+          "singing",
+          "dancing",
+          "writing",
+          "running"
+        ]
+      }
+    },
+    "distractor_pool": [
+      "read",
+      "to read",
+      "reads"
+    ],
+    "explanation_template": "enjoy 后面必须跟动名词 doing。enjoy reading 正确。",
+    "common_mistake_template": "enjoy to do 错误。enjoy 后只能跟动名词。类似：finish, mind, practice, suggest。"
+  },
+  {
+    "id": "if-clause-basic",
+    "sub_module_id": "adv-clause-condition",
+    "tags": [
+      "if",
+      "条件句",
+      "主将从现"
+    ],
+    "pattern": "If it __ tomorrow, we will stay at home.",
+    "slots": {
+      "verb": {
+        "type": "weather_verb",
+        "values": [
+          "rains",
+          "snows",
+          "is cold",
+          "is hot",
+          "is windy"
+        ]
+      }
+    },
+    "distractor_pool": [
+      "will rain",
+      "rained",
+      "raining"
+    ],
+    "explanation_template": "if 引导的条件状语从句，用一般现在时表示将来，主句用 will + 动词原形。",
+    "common_mistake_template": "if 从句中不要加 will。记住\"主将从现\"规则。"
+  }
+]
